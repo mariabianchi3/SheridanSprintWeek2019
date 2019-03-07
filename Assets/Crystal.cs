@@ -38,6 +38,8 @@ public class Crystal : MonoBehaviour
 
         if (Hit)
         {
+            Color OrangeGlow = new Color(255, 182, 0, 68);
+            crystalImg.color = OrangeGlow;
             cooldown -= 0.2f;
         }
 
@@ -62,10 +64,10 @@ public class Crystal : MonoBehaviour
 
     void RockHit()
     {
-        Color OrangeGlow = new Color(255, 182, 0, 68);
+        
         rockHealth -= hitDmg;
         Hit = true;
-        crystalImg.color = OrangeGlow;
+        
         //cooldown -= 0.2f * Time.deltaTime;
 
 
