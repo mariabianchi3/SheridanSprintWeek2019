@@ -21,10 +21,14 @@ public class PlayerControl : MonoBehaviour
     public SpriteRenderer myChar;
     [HideInInspector]
     public Inventory RVal;
+
+    // For Animation
+    public Animator myAnim;
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
+        //myAnim = GetComponent<Animator>();
         mineGun = GetComponentInChildren<MineGun>();
         RVal = GetComponent<Inventory>();
     }
@@ -34,7 +38,10 @@ public class PlayerControl : MonoBehaviour
 
     {
         CheckFacing();
+        
         playerRB.velocity = new Vector2(xmove * MoveSpeed, playerRB.velocity.y);
+
+        
  
         //
         Grounded = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f), 
@@ -47,7 +54,8 @@ public class PlayerControl : MonoBehaviour
         {
             if (Grounded)
             {
-                playerRB.AddForce(transform.up * JumpPower);
+                myAnim.SetTrigger("Jump");
+                myJump();
                 //Debug.Log("Do Jump");
             }
         }
@@ -68,6 +76,10 @@ public class PlayerControl : MonoBehaviour
             //myChar.flipX = false;
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
+        else if (xmove == 0)
+        {
+            myAnim.SetBool("Walking", false);
+        }
     }
 
     public void movement(int i)
@@ -77,7 +89,16 @@ public class PlayerControl : MonoBehaviour
             if(!mineGun.isMining)
             {
                 xmove = i;
+                myAnim.SetBool("Walking", true);
+
             }
+           
         }
+    }
+
+    public void myJump()
+    {
+        playerRB.AddForce(transform.up * JumpPower);
+
     }
 }
