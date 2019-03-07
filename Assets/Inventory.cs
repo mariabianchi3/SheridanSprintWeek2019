@@ -34,14 +34,14 @@ public class Inventory : MonoBehaviour
 
         DisplayVal();
 
-        if (Input.GetButtonDown("Fire2"))
+        /*if (Input.GetButtonDown("Fire2"))
         {
             if (BlueP > 10)
             {
                 Plat.Craft();
                 BlueP -= 10;
             }
-        }
+        }*/
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
