@@ -11,4 +11,9 @@ public class LevelLoader : MonoBehaviour
     {
         SceneManager.LoadScene(levelname);
     }
+
+    public void togglePanel(GameObject go)
+    {
+        go.SetActive(!go.activeSelf);
+    }
 }
